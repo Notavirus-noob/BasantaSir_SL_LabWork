@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Challenge Application</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>Asabeneh Yetayeh challenges in 2020</h1>
+      <h2>30DaysOfJavaScript Challenge</h2>
+      <ul>
+        <li>Python Challenge Done</li>
+        <li>JavaScript Challenge Ongoing</li>
+        <li>React Challenge Coming</li>
+        <li>FullStack Challenge Coming</li>
+        <li>DataAnalysis Challenge Coming</li>
+        <li>ReactNative Challenge Coming</li>
+        <li>MachineLearning Challenge Coming</li>
+      </ul>
+    </div>
+
+    <script>
+      const year = document.querySelector("h1");
+      const time = document.querySelector("h2");
+      const challenges = document.querySelectorAll("li");
+
+      // a. Change year color every 1 second in grayscale
+      setInterval(() => {
+        const grayValue = Math.floor(Math.random() * 256);
+        year.style.color = `rgb(${grayValue}, ${grayValue}, ${grayValue})`;
+      }, 1000);
+
+      // b. Change background of date/time every 1 second in grayscale
+      setInterval(() => {
+        const grayValue = Math.floor(Math.random() * 256);
+        time.style.backgroundColor = `rgb(${grayValue}, ${grayValue}, ${grayValue})`;
+      }, 1000);
+
+      // c. Apply styles based on challenge status in grayscale
+      challenges.forEach((challenge) => {
+        if (challenge.textContent.includes("Done")) {
+          challenge.style.backgroundColor = "rgb(50, 50, 50)"; // Dark gray
+        } else if (challenge.textContent.includes("Ongoing")) {
+          challenge.style.backgroundColor = "rgb(200, 200, 200)"; // Light gray
+        } else {
+          challenge.style.backgroundColor = "rgb(150, 150, 150)"; // Medium gray
+        }
+      });
+    </script>
+  </body>
+</html>

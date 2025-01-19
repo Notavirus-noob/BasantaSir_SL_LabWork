@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function capitalizeFirstLetter(str) {
+        return str
+          .split(" ")
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(" ");
+      }
+
+      // Example usage:
+      console.log(capitalizeFirstLetter("This is capitalize the first letter"));
+    </script>
+  </body>
+</html>
