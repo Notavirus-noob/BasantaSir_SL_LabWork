@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Form</title>
+    <script src="jquery-3.1.0.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+      }
+      #message {
+        margin-top: 20px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="login-container">
+      <h2>Login</h2>
+      <form id="login-form">
+        <label for="userid">User ID:</label>
+        <input type="text" id="userid" name="userid" required /><br /><br />
+
+        <label for="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          required
+        /><br /><br />
+
+        <button type="submit">Login</button>
+      </form>
+      <p id="message"></p>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        $("#login-form").on("submit", function (e) {
+          e.preventDefault(); // Prevent form from reloading the page
+
+          $.ajax({
+            url: "backend.php", // PHP file handling the data
+            type: "POST",
+            data: {
+              userid: $("#userid").val(),
+              password: $("#password").val(),
+            },
+            dataType: "json",
+            success: function (response) {
+              if (response.status === "success") {
+                // Hide input fields and show welcome message
+                $("#login-form").hide();
+                $("#message").text(response.message).css("color", "green");
+              } else {
+                // Show error message
+                $("#message").text(response.message).css("color", "red");
+              }
+            },
+            error: function () {
+              $("#message")
+                .text("An error occurred. Please try again.")
+                .css("color", "red");
+            },
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

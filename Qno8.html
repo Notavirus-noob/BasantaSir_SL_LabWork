@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jQuery Effect Methods</title>
+    <script src="jquery-3.1.0.js"></script>
+    <style>
+      #content {
+        width: 200px;
+        height: 200px;
+        background-color: rgb(7, 7, 7);
+        margin: 20px;
+        text-align: center;
+        line-height: 200px;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>jQuery Effect Methods</h2>
+
+    <button onclick="$('#content').hide()">Hide</button>
+    <button onclick="$('#content').show()">Show</button>
+    <button onclick="$('#content').toggle()">Toggle</button>
+    <button onclick="$('#content').fadeIn()">Fade In</button>
+    <button onclick="$('#content').fadeOut()">Fade Out</button>
+    <button onclick="$('#content').fadeToggle()">Fade Toggle</button>
+    <button onclick="$('#content').slideUp()">Slide Up</button>
+    <button onclick="$('#content').slideDown()">Slide Down</button>
+    <button onclick="$('#content').slideToggle()">Slide Toggle</button>
+    <button
+      onclick="$('#content').animate({width: '500px', height: '300px'}, 1000)"
+    >
+      Animate
+    </button>
+
+    <div id="content">Content Area</div>
+  </body>
+  <script>
+    $("#content").hide();
+    $("#content").show();
+    $("#content").toggle();
+    $("#content").fadeIn();
+    $("#content").fadeOut();
+    $("#content").fadeToggle();
+    $("#content").slideUp();
+    $("#content").slideDown();
+    $("#content").slideToggle();
+    $("#content").animate({ width: "1000px", height: "500px" }, 5000);
+  </script>
+</html>

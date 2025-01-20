@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ajax Live API Example</title>
+  </head>
+  <body>
+    <h1>Ajax Live API Example</h1>
+    <button id="get_data">Get Data</button>
+    <table border="1" width="100%">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Poster</th>
+          <th>Year</th>
+          <th>Genre</th>
+          <th>Rating</th>
+          <th>Director</th>
+          <th>Country</th>
+          <th>Language</th>
+          <th>Actors</th>
+        </tr>
+      </thead>
+      <tbody id="movie">
+        <tr>
+          <td colspan="10">No Data</td>
+        </tr>
+      </tbody>
+    </table>
+    <p id="content">
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat
+      asperiores est quisquam eum aut, soluta fugit, cupiditate odit error
+      sapiente quidem, fuga sint aperiam dolores nisi assumenda eveniet corrupti
+      vitae.
+    </p>
+
+    <script>
+      // Function to fetch data from the server
+      function getDataFromServer() {
+        const proxyUrl = "https://corsproxy.io/?";
+        const targetUrl = "https://freetestapi.com/api/v1/movies";
+        const url = proxyUrl + encodeURIComponent(targetUrl);
+
+        let xhttp = new XMLHttpRequest();
+        xhttp.open("GET", url, true);
+        xhttp.send();
+
+        xhttp.onreadystatechange = function () {
+          if (this.readyState == 4) {
+            console.log("Response Status:", this.status);
+            console.log("Response Text:", this.responseText);
+
+            if (this.status == 200) {
+              try {
+                let data = JSON.parse(this.responseText);
+                let tbody = document.getElementById("movie");
+                tbody.innerHTML = ""; // Clear existing rows
+
+                data.forEach(function (movie) {
+                  let row = `
+                        <tr>
+                            <td>${movie.id}</td>
+                            <td>${movie.title}</td>
+                            <td><img src="${movie.poster}" alt="Poster" style="width:100px;"></td>
+                            <td>${movie.year}</td>
+                            <td>${movie.genre}</td>
+                            <td>${movie.rating}</td>
+                            <td>${movie.director}</td>
+                            <td>${movie.country}</td>
+                            <td>${movie.language}</td>
+                            <td>${movie.actors}</td>
+                        </tr>
+                    `;
+                  tbody.insertAdjacentHTML("beforeend", row);
+                });
+              } catch (err) {
+                console.error("Error Parsing JSON:", err);
+              }
+            } else {
+              console.error("Failed to fetch data. HTTP Status:", this.status);
+            }
+          }
+        };
+      }
+
+      // Bind the click event to the button
+      document
+        .getElementById("get_data")
+        .addEventListener("click", getDataFromServer);
+    </script>
+  </body>
+</html>

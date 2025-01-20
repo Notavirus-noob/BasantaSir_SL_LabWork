@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Password Reset</title>
+  </head>
+  <body>
+    <h2>Password Reset</h2>
+    <form id="passwordResetForm">
+      <label for="username">Enter Username:</label>
+      <input type="text" id="username" name="username" required />
+      <button type="submit">Check Availability</button>
+      <p id="result"></p>
+    </form>
+
+    <script>
+      document
+        .getElementById("passwordResetForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent form submission
+
+          var username = document.getElementById("username").value;
+          var result = document.getElementById("result");
+
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST", "check_username.php", true);
+          xhr.setRequestHeader(
+            "Content-Type",
+            "application/x-www-form-urlencoded"
+          );
+
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+              result.innerHTML = xhr.responseText; // Display the response from PHP
+            }
+          };
+
+          xhr.send("username=" + encodeURIComponent(username));
+        });
+    </script>
+  </body>
+</html>

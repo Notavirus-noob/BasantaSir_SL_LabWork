@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="get_data">Get data</button>
+    <p id="content">Lorem ipsum dolor sit !</p>
+    <script>
+        let btn = document.getElementById('get_data');
+        btn.addEventListener('click',getDataFromServer);
+        function getDataFromServer(){
+            let xhttp = new XMLHttpRequest();
+            xhttp.open('Get','bca.txt',true);
+            xhttp.send();
+            xhttp.onreadystatechange=function(){
+                if (this.readyState == 4 && this.status == 200){
+                    document.getElementById('content').innerHTML = this.responseText;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

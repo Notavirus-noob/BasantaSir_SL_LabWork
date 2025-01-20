@@ -1,0 +1,4 @@
+BCA (Bachelor of Computer Applications) is a four-year undergraduate degree program that is designed to provide students with a solid foundation in
+computer science and software development.
+The course includes subjects like programming languages, data structures, algorithms, databases, and web development with networking system.
+
